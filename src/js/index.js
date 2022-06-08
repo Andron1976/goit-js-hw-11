@@ -4,7 +4,6 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// refs
 const refs = {
   form: document.querySelector('.header__form'),
   input: document.querySelector('.header__input'),
@@ -13,16 +12,13 @@ const refs = {
   btnLoadMore: document.querySelector('.load-more'),
 };
 
-// btn d:n
 refs.btnLoadMore.style.display = 'none';
 
-// variables
 const newsApiService = new NewsApiService();
 let lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
 
-// btn close
 refs.btnClose.style.display = 'none';
 
 refs.input.addEventListener('focus', () => {
@@ -42,7 +38,6 @@ refs.input.addEventListener('blur', () => {
   }, 100);
 });
 
-// submit
 const onSumbit = async e => {
   e.preventDefault();
   refs.list.innerHTML = '';
@@ -76,7 +71,6 @@ const onSumbit = async e => {
 
 refs.form.addEventListener('submit', onSumbit);
 
-// load more
 const onClickLoadMore = async () => {
   try {
     const { data } = await newsApiService.fetchArticles();
@@ -116,7 +110,6 @@ const onClickLoadMore = async () => {
 
 refs.btnLoadMore.addEventListener('click', onClickLoadMore);
 
-// markup function
 function makeMarkup(hits) {
   let markup = hits
     .map(
