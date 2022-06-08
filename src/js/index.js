@@ -21,22 +21,22 @@ let lightbox = new SimpleLightbox('.gallery a', {
 
 refs.btnClose.style.display = 'none';
 
-refs.input.addEventListener('focus', () => {
-  setTimeout(() => {
-    refs.btnClose.style.display = 'block';
-  }, 100);
-});
+// refs.input.addEventListener('focus', () => {
+//   setTimeout(() => {
+//     refs.btnClose.style.display = 'block';
+//   }, 100);
+// });
 
-refs.btnClose.addEventListener('click', e => {
-  refs.input.value = '';
-  e.target.style.display = 'none';
-});
+// refs.btnClose.addEventListener('click', e => {
+//   refs.input.value = '';
+//   e.target.style.display = 'none';
+// });
 
-refs.input.addEventListener('blur', () => {
-  setTimeout(() => {
-    refs.btnClose.style.display = 'none';
-  }, 100);
-});
+// refs.input.addEventListener('blur', () => {
+//   setTimeout(() => {
+//     refs.btnClose.style.display = 'none';
+//   }, 100);
+// });
 
 const onSumbit = async e => {
   e.preventDefault();
@@ -51,6 +51,9 @@ const onSumbit = async e => {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
+      refs.btnLoadMore.style.display = 'none';
+    } else if (data.totalHits <= 40) {
+      makeMarkup(data.hits);
       refs.btnLoadMore.style.display = 'none';
     } else {
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
